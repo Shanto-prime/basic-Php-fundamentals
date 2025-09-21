@@ -9,20 +9,25 @@
         body {
             margin: 20px 100px;
             height: 80vh;
-            .list{
+
+            .list {
                 padding-inline-start: 20px;
             }
         }
-        .o2red{
+
+        .o2red {
             color: red;
         }
-        .o2green{
+
+        .o2green {
             color: green;
         }
-        .o2blue{
+
+        .o2blue {
             color: blue;
         }
-        .o2skyblue{
+
+        .o2skyblue {
             color: skyblue;
         }
     </style>
@@ -30,11 +35,20 @@
 
 <body>
     <h4>Test Foreach function</h4>
-    <?php $colors =["red", "green", "blue", "skyblue"]; ?>
+    <?php
+    $peoples = [
+        ["name" => "John", "age" => 30],
+        ["name" => "Jane", "age" => 25],
+        ["name" => "Bob", "age" => 35],
+        ["name" => "Alice", "age" => 28],
+    ];
+    ?>
     <div class="box">
         <ul class="list">
-            <?php foreach($colors as $color): ?>
-                <li class="o2<?= $color; ?>"><?php echo "the color is" ." " . $color; ?></li>
+            <?php foreach ($peoples as $people): ?>
+                <li class="o2<?= $color; ?>">
+                    <?= "the color is" . " " . $color; ?>
+                </li>
             <?php endforeach; ?>
         </ul>
     </div>
