@@ -37,3 +37,4 @@ function filterByAge($peoples, $age)
     }
     return $filteredAge;
 }
+require("index.view.php");
