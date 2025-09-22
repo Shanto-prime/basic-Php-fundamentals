@@ -1,57 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$peoples = [
+    [
+        "name" => "John",
+        "age" => 30,
+        "color" => "red",
+        "url" => "https://localhost:5959/john"
+    ],
+    [
+        "name" => "Jane",
+        "age" => 25,
+        "color" => "green",
+        "url" => "https://localhost:5959/jane"
+    ],
+    [
+        "name" => "Bob",
+        "age" => 40,
+        "color" => "blue",
+        "url" => "https://localhost:5959/bob"
+    ],
+    [
+        "name" => "Alice",
+        "age" => 25,
+        "color" => "skyblue",
+        "url" => "https://localhost:5959/alice"
+    ]
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo PHP</title>
-    <style>
-        body {
-            margin: 20px 100px;
-            height: 80vh;
+];
+function filterByAge($peoples, $age)
+{
+    $filteredAge = [];
 
-            .list {
-                padding-inline-start: 20px;
-            }
+    foreach ($peoples as $people) {
+        if ($people["age"] === $age) {
+            $filteredAge[] = $people;
         }
-
-        .o2red {
-            color: red;
-        }
-
-        .o2green {
-            color: green;
-        }
-
-        .o2blue {
-            color: blue;
-        }
-
-        .o2skyblue {
-            color: skyblue;
-        }
-    </style>
-</head>
-
-<body>
-    <h4>Test Foreach function</h4>
-    <?php
-    $peoples = [
-        ["name" => "John", "age" => 30],
-        ["name" => "Jane", "age" => 25],
-        ["name" => "Bob", "age" => 35],
-        ["name" => "Alice", "age" => 28],
-    ];
-    ?>
-    <div class="box">
-        <ul class="list">
-            <?php foreach ($peoples as $people): ?>
-                <li class="o2<?= $color; ?>">
-                    <?= "the color is" . " " . $color; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-</body>
-
-</html>
+    }
+    return $filteredAge;
+}
+require("index.view.php");
