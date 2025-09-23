@@ -1,40 +1,39 @@
 <?php
-$peoples = [
-    [
-        "name" => "John",
-        "age" => 30,
-        "color" => "red",
-        "url" => "https://localhost:5959/john"
-    ],
-    [
-        "name" => "Jane",
-        "age" => 25,
-        "color" => "green",
-        "url" => "https://localhost:5959/jane"
-    ],
-    [
-        "name" => "Bob",
-        "age" => 40,
-        "color" => "blue",
-        "url" => "https://localhost:5959/bob"
-    ],
-    [
-        "name" => "Alice",
-        "age" => 25,
-        "color" => "skyblue",
-        "url" => "https://localhost:5959/alice"
-    ]
 
-];
-function filterByAge($peoples, $age)
-{
-    $filteredAge = [];
+require_once 'functions.php';
 
-    foreach ($peoples as $people) {
-        if ($people["age"] === $age) {
-            $filteredAge[] = $people;
-        }
-    }
-    return $filteredAge;
-}
-require("index.view.php");
+
+// require 'router.php';
+
+// connect to database
+
+$dsn = "mysql:host=localhost;port=3306; dbname=demo-php;";
+$pdo = new PDO($dsn , 'root', '11110000');
+$statement = $pdo->prepare("SELECT * FROM demos");
+$statement->execute();
+$demos = $statement->fetchAll(pdo::FETCH_ASSOC);
+dd($demos);
+
+// class person
+// {
+//     public $name;
+//     public $age;
+//     public $email;
+//     public $password;
+//     public $id;
+
+//     public function breathe()
+//     {
+//         echo $this->name . " is breathing";
+//     }
+// }
+
+// $person = new person();
+// $person->name = "Ymha";
+// $person->age = 22;
+// $person->email = "y@y.com";
+// $person->password = "123456";
+// $person->id = 1;
+
+// $person -> breathe();
+?>
