@@ -12,7 +12,11 @@ $pdo = new PDO($dsn , 'root', '11110000');
 $statement = $pdo->prepare("SELECT * FROM demos");
 $statement->execute();
 $demos = $statement->fetchAll(pdo::FETCH_ASSOC);
-dd($demos);
+// dd($demos);
+
+foreach ($demos as $demo) {
+    echo $demo['author'] . "<br>";
+}
 
 // class person
 // {
