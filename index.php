@@ -5,39 +5,26 @@ require_once 'functions.php';
 
 // require 'router.php';
 
-// connect to database
-
-$dsn = "mysql:host=localhost;port=3306; dbname=demo-php;";
-$pdo = new PDO($dsn , 'root', '11110000');
-$statement = $pdo->prepare("SELECT * FROM demos");
-$statement->execute();
-$demos = $statement->fetchAll(pdo::FETCH_ASSOC);
-// dd($demos);
-
-foreach ($demos as $demo) {
-    echo $demo['author'] . "<br>";
+class Database
+{
+    public function query($query = "SELECT * FROM demos")
+    {
+        // connect to database
+        echo "Connected to database" . "<br>";
+        $dsn = "mysql:host=localhost;port=3306; dbname=demo-php;";
+        $pdo = new PDO($dsn, 'root', '11110000');
+        $statement = $pdo->prepare($query);
+        $statement->execute();
+        return $statement->fetchAll(pdo::FETCH_ASSOC);
+    }
 }
 
-// class person
-// {
-//     public $name;
-//     public $age;
-//     public $email;
-//     public $password;
-//     public $id;
+$db = new Database();
 
-//     public function breathe()
-//     {
-//         echo $this->name . " is breathing";
-//     }
-// }
+$demos = $db->query();
 
-// $person = new person();
-// $person->name = "Ymha";
-// $person->age = 22;
-// $person->email = "y@y.com";
-// $person->password = "123456";
-// $person->id = 1;
 
-// $person -> breathe();
-?>
+
+foreach ($demos as $demo) {
+    echo $demo['title'] . " by " . $demo['author'] . "<br>";
+}
