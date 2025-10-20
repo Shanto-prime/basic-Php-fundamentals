@@ -7,13 +7,20 @@ require_once 'functions.php';
 
 class Database
 {
+
+    public $connection;
+
+    public function __construct()
+    {
+        echo "Connected to database" . "<br>";
+        $dsn = "mysql:host=localhost;port=3306; dbname=demo-php;";
+        $this -> connection = new PDO($dsn, 'root', '11110000');
+    }
     public function query($query = "SELECT * FROM demos")
     {
         // connect to database
-        echo "Connected to database" . "<br>";
-        $dsn = "mysql:host=localhost;port=3306; dbname=demo-php;";
-        $pdo = new PDO($dsn, 'root', '11110000');
-        $statement = $pdo->prepare($query);
+
+        $statement = $this->connection->prepare($query);
         $statement->execute();
         return $statement->fetchAll(pdo::FETCH_ASSOC);
     }
@@ -21,7 +28,7 @@ class Database
 
 $db = new Database();
 
-$demos = $db->query();
+$demos = $db->query("SELECT * FROM demos WHERE id > 2");
 
 
 
