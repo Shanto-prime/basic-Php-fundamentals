@@ -28,7 +28,7 @@ class Database
 
 $db = new Database();
 
-$demos = $db->query("SELECT * FROM demos WHERE id > 2");
+$demos = $db->query("SELECT * FROM demos ");
 
 
 
